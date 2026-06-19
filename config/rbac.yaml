@@ -1,0 +1,30 @@
+# Role definitions — add/remove roles without touching code.
+# Each role lists which document roles (allowed_roles tags) it can access.
+
+roles:
+  Admin:
+    inherits: ["Finance", "HR", "Compliance", "Engineering", "Executive"]
+    description: "Full platform access"
+
+  Executive:
+    inherits: ["Finance", "Compliance"]
+    description: "Executive leadership access"
+
+  Finance:
+    inherits: ["Finance"]
+    description: "Financial data access"
+
+  HR:
+    inherits: ["HR"]
+    description: "Human resources data access"
+
+  Compliance:
+    inherits: ["Compliance"]
+    description: "Compliance and audit access"
+
+  Engineering:
+    inherits: ["Engineering"]
+    description: "Engineering and operations access"
+
+# Default role when none specified
+default_role: Engineering

@@ -1,0 +1,14 @@
+Enterprise Compliance Handbook 2025
+
+            Section 1: Data Protection
+            All employees must comply with GDPR and SOC2 requirements.
+            Personal data including SSN (format: 123-45-6789) must be encrypted at rest.
+
+            Section 2: Violation Reporting
+            Compliance violations must be reported within 24 hours.
+            Systems owned by Team Alpha have had 3 compliance violations in Q1 2025
+            related to unauthorized data access.
+
+            Section 3: Audit Requirements
+            Quarterly audits are mandatory for all financial systems.
+            Payment-api service failed compliance checks in January 2025.

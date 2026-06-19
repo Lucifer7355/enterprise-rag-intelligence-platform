@@ -1,0 +1,13 @@
+Security Assessment Report Q1 2025
+
+            Executive Summary:
+            12 security incidents detected in Q1 2025.
+            Payment-api experienced 5 authentication failures.
+            API key rotation overdue for 3 services.
+
+            Recommendations:
+            - Implement MFA for all admin accounts
+            - Rotate API keys quarterly
+            - Enable WAF on payment-api
+
+            Internal secret detected: api_key=sk-prod-abc123xyz (REDACTED IN PRODUCTION)

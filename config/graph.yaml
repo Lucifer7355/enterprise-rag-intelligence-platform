@@ -1,0 +1,55 @@
+# Knowledge graph entity mappings — configure without code.
+# Graph is built automatically from SQL connectors at ingest time.
+
+enabled: true
+
+entity_mappings:
+  - table: employees
+    entity_type: Employee
+    id_template: "employee_{employee_id}"
+    properties: [name, department, manager]
+    relationships:
+      - relation: belongs_to
+        target_template: "team_{department}"
+        target_type: Team
+
+  - table: incidents
+    entity_type: Incident
+    id_field: incident_id
+    properties: [service, severity, owner, status]
+    relationships:
+      - relation: affects
+        target_template: "service_{service}"
+        target_type: Service
+      - relation: owned_by
+        from: "service_{service}"
+        target_template: "team_{owner}"
+        target_type: Team
+
+  - table: assets
+    entity_type: Asset
+    id_field: asset_id
+    properties: [owner_team, criticality]
+    relationships:
+      - relation: owned_by
+        target_template: "team_{owner_team}"
+        target_type: Team
+
+# Multi-hop graph expansion rules at query time
+query_expansion:
+  - match_keywords: [team]
+    entity_type: Team
+    expand: predecessors
+    template: "{node_id} ({entity_type}) owned by team"
+
+  - match_keywords: [compliance, violation]
+    entity_type: Incident
+    filter_property: service
+    filter_contains: payment
+    template: "Incident {node_id} on {service} may relate to compliance."
+
+  - match_keywords: [payment, failed, incident]
+    entity_type: Incident
+    filter_property: service
+    filter_equals: payment-api
+    template: "Incident {node_id}: payment-api failure linked via graph."

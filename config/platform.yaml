@@ -1,0 +1,21 @@
+# Master platform configuration — edit this file to customize behavior.
+# No code changes required for most customizations.
+
+platform:
+  name: "Enterprise RAG Intelligence Platform"
+  auto_ingest_on_startup: true
+  sample_data_enabled: true   # set false in production
+
+retrieval:
+  chunk_size: 500
+  chunk_overlap: 100
+  hybrid_semantic_weight: 0.6
+  hybrid_bm25_weight: 0.4
+  top_k_retrieval: 20
+  top_k_rerank: 5
+
+metadata:
+  # Auto-tag documents when sidecar metadata is missing
+  auto_tag_enabled: true
+  # Apply filename/path pattern rules from connectors.yaml
+  use_pattern_rules: true

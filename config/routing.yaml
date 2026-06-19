@@ -1,0 +1,42 @@
+# Query classification and source routing — fully configurable.
+
+query_types:
+  - name: "Policy Query"
+    keywords: [policy, handbook, procedure, guideline, manual]
+    sources: [pdf, hr_policy, compliance]
+
+  - name: "Incident Query"
+    keywords: [incident, failed, error, outage, failure, timeout, downtime]
+    sources: [incident_report, json_log, sql, engineering_runbook]
+
+  - name: "Financial Query"
+    keywords: [revenue, expense, financial, budget, cost, payment amount, profit]
+    sources: [csv, sql]
+
+  - name: "Compliance Query"
+    keywords: [compliance, violation, audit, regulation, gdpr, soc2]
+    sources: [compliance, audit, json_log, asset_inventory, incident_report]
+
+  - name: "HR Query"
+    keywords: [employee, salary, hr, leave, onboarding, hiring, compensation]
+    sources: [hr_policy, sql, pdf]
+
+  - name: "Engineering Query"
+    keywords: [runbook, deployment, api, service, engineering, rollback, infrastructure]
+    sources: [engineering_runbook, json_log, sql]
+
+  - name: "General Search"
+    keywords: []
+    sources: ["*"]   # search all registered source types
+
+# Multi-hop routing boosts — when query matches ALL keywords, add extra sources
+multi_hop_rules:
+  - name: team_compliance_violations
+    match_all: [team, compliance, violation]
+    add_sources: [asset_inventory, incident_report, compliance]
+
+  - name: payment_incidents
+    match_all: [payment, incident]
+    add_sources: [json_log, incident_report, sql]
+
+default_query_type: "General Search"

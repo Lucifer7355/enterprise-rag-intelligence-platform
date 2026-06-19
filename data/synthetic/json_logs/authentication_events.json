@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2025-01-05T10:00:00Z",
+    "service": "auth-service",
+    "severity": "INFO",
+    "message": "User login successful",
+    "user": "alice@corp.com"
+  },
+  {
+    "timestamp": "2025-01-06T14:30:00Z",
+    "service": "auth-service",
+    "severity": "WARNING",
+    "message": "Failed login attempt",
+    "user": "unknown"
+  },
+  {
+    "timestamp": "2025-01-07T09:15:00Z",
+    "service": "payment-api",
+    "severity": "ERROR",
+    "message": "Authentication token expired"
+  }
+]

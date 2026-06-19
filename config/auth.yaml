@@ -1,0 +1,47 @@
+# Authentication & SSO configuration
+
+auth:
+  enabled: true
+  required: false          # set true to require JWT on all protected endpoints
+  jwt_secret: "change-this-secret-in-production-use-env-JWT_SECRET"
+  jwt_expire_minutes: 480
+  demo_mode: true          # allows plain-text passwords below (dev only)
+
+# Local username/password users (demo credentials for judges)
+local_users:
+  - username: admin
+    password: admin123
+    user_id: admin001
+    role: Admin
+  - username: engineer
+    password: eng123
+    user_id: eng001
+    role: Engineering
+  - username: finance
+    password: fin123
+    user_id: fin001
+    role: Finance
+  - username: hr_user
+    password: hr123
+    user_id: hr001
+    role: HR
+  - username: compliance
+    password: comp123
+    user_id: comp001
+    role: Compliance
+
+# OIDC / SSO (Google, Azure AD, Okta — configure via env vars)
+sso:
+  enabled: false
+  provider_name: "Enterprise SSO"
+  client_id: ""            # or env SSO_CLIENT_ID
+  client_secret: ""        # or env SSO_CLIENT_SECRET
+  discovery_url: ""          # e.g. https://accounts.google.com/.well-known/openid-configuration
+  redirect_uri: "http://localhost:8000/auth/sso/callback"
+  scopes: ["openid", "email", "profile"]
+  # Map SSO email domains to roles
+  domain_role_map:
+    admin.company.com: Admin
+    engineering.company.com: Engineering
+    finance.company.com: Finance
+  default_sso_role: Engineering

@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2025-01-08T11:00:00Z",
+    "service": "payment-api",
+    "severity": "ERROR",
+    "message": "Transaction timeout",
+    "transaction_id": "TXN-991"
+  },
+  {
+    "timestamp": "2025-01-09T16:45:00Z",
+    "service": "payment-api",
+    "severity": "ERROR",
+    "message": "Transaction timeout",
+    "transaction_id": "TXN-992"
+  },
+  {
+    "timestamp": "2025-01-10T08:20:00Z",
+    "service": "payment-api",
+    "severity": "CRITICAL",
+    "message": "Payment gateway unreachable"
+  },
+  {
+    "timestamp": "2025-01-11T13:00:00Z",
+    "service": "data-pipeline",
+    "severity": "ERROR",
+    "message": "ETL job failed"
+  }
+]

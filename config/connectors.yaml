@@ -1,0 +1,182 @@
+connectors:
+- name: compliance_pdfs
+  type: folder
+  enabled: true
+  path: data/synthetic/pdfs
+  file_patterns:
+  - Compliance_*.txt
+  - Compliance_*.pdf
+  metadata:
+    department: compliance
+    classification: confidential
+    allowed_roles:
+    - Compliance
+    - Admin
+    - Executive
+    data_source: compliance
+- name: engineering_pdfs
+  type: folder
+  enabled: true
+  path: data/synthetic/pdfs
+  file_patterns:
+  - Engineering_*.txt
+  - Engineering_*.pdf
+  - Security_*.txt
+  metadata:
+    department: engineering
+    classification: internal
+    allowed_roles:
+    - Engineering
+    - Admin
+    - Compliance
+    data_source: engineering_runbook
+- name: hr_pdfs
+  type: folder
+  enabled: true
+  path: data/synthetic/pdfs
+  file_patterns:
+  - HR_*.txt
+  - HR_*.pdf
+  metadata:
+    department: hr
+    classification: internal
+    allowed_roles:
+    - HR
+    - Admin
+    data_source: hr_policy
+- name: enterprise_sql
+  type: sql
+  enabled: true
+  path: data/synthetic/enterprise.db
+  tables:
+    employees:
+      id_field: employee_id
+      template: 'Employee #{employee_id}
+
+        Name: {name}
+
+        Department: {department}
+
+        Salary: {salary}
+
+        Manager: {manager}
+
+        '
+      metadata:
+        department: hr
+        classification: confidential
+        allowed_roles:
+        - HR
+        - Admin
+        - Finance
+        data_source: sql
+    incidents:
+      id_field: incident_id
+      template: 'Incident {incident_id}
+
+        Service: {service}
+
+        Severity: {severity}
+
+        Owner: {owner}
+
+        Status: {status}
+
+        '
+      metadata:
+        department: engineering
+        classification: internal
+        allowed_roles:
+        - Engineering
+        - Admin
+        - Compliance
+        data_source: incident_report
+    assets:
+      id_field: asset_id
+      template: 'Asset {asset_id}
+
+        Owner Team: {owner_team}
+
+        Criticality: {criticality}
+
+        '
+      metadata:
+        department: engineering
+        classification: internal
+        allowed_roles:
+        - Engineering
+        - Admin
+        - Compliance
+        - Executive
+        data_source: asset_inventory
+- name: financial_csv
+  type: csv
+  enabled: true
+  path: data/synthetic/csv
+  metadata:
+    department: finance
+    classification: confidential
+    allowed_roles:
+    - Finance
+    - Admin
+    - Executive
+    data_source: csv
+- name: json_logs
+  type: json
+  enabled: true
+  path: data/synthetic/json_logs
+  metadata:
+    department: engineering
+    classification: internal
+    allowed_roles:
+    - Engineering
+    - Admin
+    - Compliance
+    data_source: json_log
+  pattern_rules:
+  - pattern: audit_*
+    metadata:
+      department: compliance
+      allowed_roles:
+      - Compliance
+      - Admin
+      data_source: audit
+- name: test_runtime
+  type: inline
+  enabled: true
+  metadata:
+    department: compliance
+    allowed_roles:
+    - Compliance
+    - Admin
+    data_source: inline
+auto_tag_patterns:
+- pattern: (?i)compliance|gdpr|soc2
+  metadata:
+    department: compliance
+    allowed_roles:
+    - Compliance
+    - Admin
+    data_source: compliance
+- pattern: (?i)hr|employee|payroll
+  metadata:
+    department: hr
+    allowed_roles:
+    - HR
+    - Admin
+    data_source: hr_policy
+- pattern: (?i)incident|security|runbook|engineering
+  metadata:
+    department: engineering
+    allowed_roles:
+    - Engineering
+    - Admin
+    data_source: engineering_runbook
+- pattern: (?i)revenue|expense|financial
+  metadata:
+    department: finance
+    allowed_roles:
+    - Finance
+    - Admin
+    - Executive
+    data_source: csv

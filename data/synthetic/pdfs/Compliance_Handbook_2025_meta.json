@@ -1,0 +1,10 @@
+{
+  "department": "compliance",
+  "classification": "confidential",
+  "allowed_roles": [
+    "Compliance",
+    "Admin",
+    "Executive"
+  ],
+  "data_source": "compliance"
+}

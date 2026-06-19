@@ -1,0 +1,10 @@
+{
+  "department": "engineering",
+  "classification": "confidential",
+  "allowed_roles": [
+    "Engineering",
+    "Admin",
+    "Compliance"
+  ],
+  "data_source": "incident_report"
+}

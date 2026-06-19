@@ -1,0 +1,23 @@
+[
+  {
+    "timestamp": "2025-01-12T10:00:00Z",
+    "action": "data_access",
+    "user": "compliance_officer",
+    "resource": "Compliance_Handbook_2025.pdf",
+    "result": "allowed"
+  },
+  {
+    "timestamp": "2025-01-13T11:30:00Z",
+    "action": "data_access",
+    "user": "engineer1",
+    "resource": "salary_data",
+    "result": "denied"
+  },
+  {
+    "timestamp": "2025-01-14T09:00:00Z",
+    "action": "compliance_check",
+    "service": "payment-api",
+    "result": "failed",
+    "team": "Team Alpha"
+  }
+]

@@ -1,0 +1,28 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime data (regenerated on ingest)
+data/audit_log.jsonl
+data/knowledge_graph.json
+
+# Model cache (downloaded at runtime)
+.cache/

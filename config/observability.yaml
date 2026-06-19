@@ -1,0 +1,22 @@
+# Observability — Langfuse, Phoenix, OpenTelemetry
+
+opentelemetry:
+  enabled: true
+  service_name: enterprise-rag
+
+langfuse:
+  enabled: true
+  # Set via env: LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_HOST
+  host: "http://localhost:3000"
+  # Falls back to in-memory trace buffer when Langfuse unreachable
+
+phoenix:
+  enabled: true
+  # OTLP endpoint for Arize Phoenix
+  otlp_endpoint: "http://phoenix:4317"
+  ui_url: "http://localhost:6006"
+
+metrics:
+  track_hallucination_rate: true
+  track_rbac_failures: true
+  track_retrieval_latency: true

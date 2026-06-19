@@ -1,0 +1,9 @@
+{
+  "department": "hr",
+  "classification": "internal",
+  "allowed_roles": [
+    "HR",
+    "Admin"
+  ],
+  "data_source": "hr_policy"
+}

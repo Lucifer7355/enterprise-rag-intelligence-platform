@@ -1,0 +1,27 @@
+# Sensitive data detection and handling — fully configurable.
+# action: block (deny query) | skip_chunk (omit chunk) | redact (mask value)
+
+patterns:
+  ssn:
+    regex: '\b\d{3}-\d{2}-\d{4}\b'
+    action: block
+    allowed_roles: [Admin, HR, Compliance]
+    denial_message: "Access Denied: Insufficient permissions to view PII."
+
+  bank_account:
+    regex: '\b\d{4}-\d{4}-\d{4}-\d{4}\b'
+    action: block
+    allowed_roles: [Admin, HR, Compliance]
+    denial_message: "Access Denied: Insufficient permissions to view PII."
+
+  salary:
+    regex: '(?i)(salary|compensation|pay\s*grade)\s*[:=]?\s*\$?\d{4,}'
+    action: block
+    allowed_roles: [Admin, HR, Finance, Executive]
+    denial_message: "Access Denied: Insufficient permissions to view salary information."
+
+  secret:
+    regex: '(?i)(api[_-]?key|secret|password|token)\s*[:=]\s*\S+'
+    action: skip_chunk
+    allowed_roles: [Admin]
+    redact_with: "[REDACTED]"
